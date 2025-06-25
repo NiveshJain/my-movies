@@ -1,4 +1,4 @@
-import Breadcrumbs from "./components/Layout/Breadcrumbs";
+import Breadcrumbs from "./_components/layout/Breadcrumbs";
 import "./globals.scss";
 
 export default function RootLayout({
@@ -9,7 +9,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-900">
-        <Breadcrumbs />
+        <header className="text-white">
+          <p className="text-center text-red-500">Movies Universe</p>
+          <Breadcrumbs />
+        </header>
         <main>{children}</main>
       </body>
     </html>

@@ -1,4 +1,4 @@
-import GenreBubbles from "./components/UI/GenreBubble";
+import GenreBubbles from "./_components/UI/GenreBubble";
 
 export default function HomePage() {
   return (

@@ -1,15 +1,18 @@
+import { notFound } from "next/navigation";
 import { movies } from "../../../../data/dummyData";
 
 export default async function MovieDetailsPage({
   params,
 }: {
-  params: { movieId: number };
+  params: Promise<{ movieId: string; genre: string }>;
 }) {
-  await params;
-  const details = movies.filter((movie) => movie.id === params.movieId)[0];
+  const { movieId, genre } = await params;
+  const details = movies.filter(
+    (movie) => movie.genres.includes(genre) && movie.id === parseInt(movieId)
+  )[0];
 
   if (!details) {
-    return <p>Movie not found.</p>;
+    notFound();
   }
 
   return (

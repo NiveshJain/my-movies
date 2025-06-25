@@ -1,5 +1,6 @@
 import { movies } from "../../../data/dummyData";
-import MovieCard from "../components/UI/movie-card";
+import MovieCard from "../_components/UI/movie-card";
+import { notFound } from "next/navigation";
 
 export interface Movies {
   id: number;
@@ -16,17 +17,21 @@ export interface Movies {
 export default async function MovieListPage({
   params,
 }: {
-  params: { genre: string };
+  params: Promise<{ genre: string }>;
 }) {
-  await params;
+  const { genre } = await params;
   const genreMovies = (movies as Movies[]).filter((movie) =>
-    movie.genres.includes(params.genre)
+    movie.genres.includes(genre)
   );
+
+  if (!genreMovies.length) {
+    notFound();
+  }
 
   return (
     <div className="container mx-auto p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {genreMovies.map((movie) => (
-        <MovieCard key={movie.title} movie={movie} genre={params.genre} />
+        <MovieCard key={movie.title} movie={movie} genre={genre} />
       ))}
     </div>
   );
