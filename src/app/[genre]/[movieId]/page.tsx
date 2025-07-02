@@ -12,7 +12,7 @@ export default async function MovieDetailsPage({
   )[0];
 
   if (!details) {
-    notFound();
+    throw new Error("No movie found with the given id:{}");
   }
 
   return (

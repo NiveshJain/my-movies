@@ -1,6 +1,6 @@
+import { notFound } from "next/navigation";
 import { movies } from "../../../data/dummyData";
 import MovieCard from "../_components/UI/movie-card";
-import { notFound } from "next/navigation";
 
 export interface Movies {
   id: number;
